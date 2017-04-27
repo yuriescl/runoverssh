@@ -9,8 +9,8 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
 
 #### Default behavior:
 
-* Ask each username@host password at the start
-* SSH connections use the flags '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
+* Ask each `username@host` password at the start
+* SSH connections use the flags `-o ConnectTimeout=5 -o StrictHostKeyChecking=no`
 * Print all SSH output in the screen
 
 #### Options:
@@ -62,7 +62,7 @@ remoteuser@devmachine password:
 
 Connecting as remoteuser@devmachine...
 On branch master
-Your branch is up-to-date with \'origin/master\'.
+Your branch is up-to-date with 'origin/master'.
 nothing to commit, working directory clean
 ```
 ```
