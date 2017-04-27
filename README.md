@@ -2,6 +2,8 @@
 
 This program runs a BASH command/script over SSH in one or more hosts.
 
+Bugs or Requests: yuriescl@gmail.com
+
 #### Usage:
 ```
 $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...

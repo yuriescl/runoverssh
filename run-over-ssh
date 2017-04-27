@@ -54,6 +54,7 @@ function print_help {
   echo ""
   echo "run-over-ssh --script myscript.sh --hostsfile hostlist remoteuser"
   echo ""
+  echo "Bugs or Requests: yuriescl@gmail.com"
 }
 
 # Standard parameters
