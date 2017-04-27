@@ -15,16 +15,17 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
 
 #### Options:
 ```
-   -s, --script       read commands from a script file instead
-   -r, --hostsfile    use the list of hosts from a file (one host per line)
-
-   -g, --globalpw     set password for all connections (asked only once)
-   --sshflags         set custom ssh flags
-                      default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
-
-   -l, --log          save ssh output (default: ${script_alias}.log) (overwrite)
-   --logfile          save ssh output to a custom file (overwrite)
-   -q, --quiet        disable ssh screen output
+     -s, --script [file]     read commands from a script file instead
+     -r, --hostsfile [file]  use the list of hosts from a file (one host per line)
+  
+     -g, --globalpw          ask one global password for all connections
+     --sshflags [flags]      set custom ssh flags
+                             default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
+  
+     -l, --log               save ssh output (default: ${script_alias}.log) (overwrite)
+     --logfile [file]        save ssh output to a custom file (overwrite)"
+     -q, --quiet             disable ssh screen output"
+  
 ```
 
 #### Examples
