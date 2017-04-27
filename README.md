@@ -22,7 +22,7 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
      --sshflags [flags]      set custom ssh flags
                              default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
   
-     -l, --log               save ssh output (default: ${script_alias}.log) (overwrite)
+     -l, --log               save ssh output (default: run-over-ssh.log) (overwrite)
      --logfile [file]        save ssh output to a custom file (overwrite)"
      -q, --quiet             disable ssh screen output"
   
