@@ -37,6 +37,8 @@ function print_help {
   echo "   -g, --globalpw          ask one global password for all connections"
   echo "   --sshflags [flags]      set custom ssh flags"
   echo "                           default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'"
+  echo "   --slogin 		       make the remote bash act as a login shell"
+  echo "   --sinteractive	   	   make the remote bash act as a interactive shell"
   echo ""
   echo "   -l, --log               save ssh output (default: ${script_alias}.log) (overwrite)"
   echo "   --logfile [file]        save ssh output to a custom file (overwrite)"
@@ -67,6 +69,8 @@ log_file="${script_alias}.log"  # --logfile
 global_pw=""
 passwords=()
 ssh_flags="-o ConnectTimeout=5 -o StrictHostKeyChecking=no"   # --sshflags
+s_login=""
+s_interactive=""
 quiet_enabled="" # -q | --quiet
 
 if [[ "$1" == "--help" ]]; then
@@ -124,6 +128,12 @@ for parameter do
       "-g" | "--globalpw")
         global_pw="true"
         ;;
+      "-slogin")
+		s_login="-l"
+		;;
+	  "-sinteractive")
+		s_interactive="-i"
+		;;
       "-l" | "--log")
         log_enabled="true"
         ;;
@@ -255,15 +265,15 @@ do
   echo "Connecting as ${username}@${host}..."
   if [ -n "${read_commands_from_file}" ]; then
     if [ -n "${quiet_enabled}" ]; then
-      sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash -s" < "${read_commands_from_file}" >> "${log_file}"
+      sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -s" < "${read_commands_from_file}" >> "${log_file}"
     else
-      sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash -s" < "${read_commands_from_file}" | tee -a "${log_file}"
+      sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -s" < "${read_commands_from_file}" | tee -a "${log_file}"
     fi
   else
     if [ -n "${quiet_enabled}" ]; then
-      sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash -c \"${command}\"" >> "${log_file}"
+      sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -c \"${command}\"" >> "${log_file}"
     else
-      sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash -c \"${command}\"" | tee -a "${log_file}"
+      sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -c \"${command}\"" | tee -a "${log_file}"
     fi
   fi
 
