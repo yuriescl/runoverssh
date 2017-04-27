@@ -28,7 +28,7 @@ command -v "sshpass" >/dev/null 2>&1 || { echo >&2 "Error! You need to install '
 # Print help
 function print_help {
   echo "Usage: ${script_name} [OPTIONS] USERNAME COMMAND HOSTS..."
-  echo "Runs a BASH command/script over SSH in a remote host or list of hosts."
+  echo "Runs a BASH command/script over SSH in one or more hosts."
   echo "Options:"
   echo ""
   echo "   -s, --script [file]     read commands from a script file instead"

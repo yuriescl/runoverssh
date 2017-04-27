@@ -1,6 +1,6 @@
 ## Run Over SSH
 
-This program runs a BASH command/script over SSH in a remote host or list of hosts.
+This program runs a BASH command/script over SSH in one or more hosts.
 
 #### Usage:
 ```
