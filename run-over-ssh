@@ -28,7 +28,7 @@ command -v "sshpass" >/dev/null 2>&1 || { echo >&2 "Error! You need to install '
 # Print help
 function print_help {
   echo "Usage: ${script_name} [OPTIONS] USERNAME COMMAND HOSTS..."
-  echo "Runs a BASH command/script over SSH in one or more hosts."
+  echo "Runs a Bash command/script over ssh in one or more hosts."
   echo "Options:"
   echo ""
   echo "   -s, --script [file]     read commands from a script file instead"
@@ -46,13 +46,13 @@ function print_help {
   echo ""
   echo "Examples:"
   echo ""
-  echo "run-over-ssh root 'systemctl restart apache2' server1 server2"
+  echo "  run-over-ssh root 'systemctl restart apache2' server1 server2"
   echo ""
-  echo "run-over-ssh --log --quiet --globalpw root 'reboot' host1 host2 host3"
+  echo "  run-over-ssh --log --quiet --globalpw root 'reboot' host1 host2 host3"
   echo ""
-  echo "run-over-ssh remoteuser 'cd git-project && git status' devmachine"
+  echo "  run-over-ssh remoteuser 'cd git-project && git status' devmachine"
   echo ""
-  echo "run-over-ssh --script myscript.sh --hostsfile hostlist remoteuser"
+  echo "  run-over-ssh --script myscript.sh --hostsfile hostlist remoteuser"
   echo ""
   echo "Bugs or Requests: yuriescl@gmail.com"
 }
@@ -67,11 +67,11 @@ read_commands_from_file=""  # -s | --script
 read_hosts_from_file=""  # -r | --hostsfile
 log_enabled=""  # -l | --log
 log_file="${script_alias}.log"  # --logfile
-global_pw=""
-passwords=()
+global_pw=""  # -g | --globalpw
+passwords=() 
 ssh_flags="-o ConnectTimeout=5 -o StrictHostKeyChecking=no"   # --sshflags
-s_login=""
-s_interactive=""
+s_login=""  # --slogin
+s_interactive=""  # --sinteractive
 quiet_enabled="" # -q | --quiet
 
 if [[ "$1" == "--help" ]]; then

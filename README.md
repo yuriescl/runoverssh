@@ -1,6 +1,6 @@
 ## Run Over SSH
 
-This program runs a BASH command/script over SSH in one or more hosts.
+This program runs a Bash command/script over ssh in one or more hosts.
 
 Bugs or Requests: yuriescl@gmail.com
 
