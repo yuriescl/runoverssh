@@ -23,12 +23,12 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
      -g, --globalpw          ask one global password for all connections
      --sshflags [flags]      set custom ssh flags
                              default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
-     --slogin                make the remote bash act as a login shell"
-     --sinteractive          make the remote bash act as a interactive shell"
+     --slogin                make the remote bash act as a login shell
+     --sinteractive          make the remote bash act as a interactive shell
   
      -l, --log               save ssh output (default: run-over-ssh.log) (overwrite)
-     --logfile [file]        save ssh output to a custom file (overwrite)"
-     -q, --quiet             disable ssh screen output"
+     --logfile [file]        save ssh output to a custom file (overwrite)
+     -q, --quiet             disable ssh screen output
   
 ```
 
