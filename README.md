@@ -1,6 +1,6 @@
 ## Run Over SSH
 
-This program runs a BASH command/script over SSH in one or more hosts.
+This program runs a Bash command/script over ssh in one or more hosts.
 
 Bugs or Requests: yuriescl@gmail.com
 
@@ -23,12 +23,12 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
      -g, --globalpw          ask one global password for all connections
      --sshflags [flags]      set custom ssh flags
                              default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
-     --slogin                make the remote bash act as a login shell"
-     --sinteractive          make the remote bash act as a interactive shell"
+     --slogin                make the remote bash act as a login shell
+     --sinteractive          make the remote bash act as a interactive shell
   
      -l, --log               save ssh output (default: run-over-ssh.log) (overwrite)
-     --logfile [file]        save ssh output to a custom file (overwrite)"
-     -q, --quiet             disable ssh screen output"
+     --logfile [file]        save ssh output to a custom file (overwrite)
+     -q, --quiet             disable ssh screen output
   
 ```
 
