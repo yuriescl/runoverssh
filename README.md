@@ -21,6 +21,7 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
      -r, --hostsfile [file]  use the list of hosts from a file (one host per line)
   
      -g, --globalpw          ask one global password for all connections
+     -n, --nopw              no password (use ssh directly instead of sshpass)
      --sshflags [flags]      set custom ssh flags
                              default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
      --slogin                make the remote bash act as a login shell
