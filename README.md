@@ -24,7 +24,7 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
      -n, --nopw              no password (use ssh directly instead of sshpass)
      --sshflags [flags]      set custom ssh flags
                              default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
-     -b, --bashflags         set custom bash flags
+     -b, --bashflags [flags] set custom bash flags
                              default: '-l'
   
      -l, --log               save ssh output (default: run-over-ssh.log) (overwrite)
