@@ -22,7 +22,7 @@ $ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
   -r, --hostsfile [file]     use the list of hosts from a file (one host per line)
   
   -n, --nopw                 no password (use ssh directly instead of sshpass)
-  -l, --log                  save ssh output (default: ${script_alias}.log) (append)
+  -l, --log                  save ssh output (default: runoverssh.log) (append)
   -q, --quiet                disable ssh screen output
   
   --bashflags [flags]        set custom bash flags
