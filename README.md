@@ -6,7 +6,7 @@ Bugs or Requests: yuriescl@gmail.com
 
 #### Usage:
 ```
-$ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
+$ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
 ```
 
 #### Default behavior:
@@ -27,7 +27,7 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
      -b, --bashflags [flags] set custom bash flags
                              default: '-l'
   
-     -l, --log               save ssh output (default: run-over-ssh.log) (overwrite)
+     -l, --log               save ssh output (default: runoverssh.log) (overwrite)
      --logfile [file]        save ssh output to a custom file (overwrite)
      -q, --quiet             disable ssh screen output
   
@@ -35,7 +35,7 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
 
 #### Examples
 ```
-$ run-over-ssh root "systemctl restart apache2" webserver webserver2
+$ runoverssh root "systemctl restart apache2" webserver webserver2
 Please set root's password for each host:
 
 root@webserver password: 
@@ -45,7 +45,7 @@ Connecting as root@webserver...
 Connecting as root@webserver2...
 ```
 ```
-$ run-over-ssh --log --quiet --globalpw root "reboot" host1 host2 host3
+$ runoverssh --log --quiet --globalpw root "reboot" host1 host2 host3
 root's password (used for all connections):
 
 Connecting as root@host1...
@@ -53,7 +53,7 @@ Connecting as root@host2...
 Connecting as root@host3...
 ```
 ```
-$ run-over-ssh -q -l -g -r puppet-nodes root "puppet agent -t"
+$ runoverssh -q -l -g -r puppet-nodes root "puppet agent -t"
 root's password (used for all connections):
 
 Connecting as root@node1...
@@ -61,7 +61,7 @@ Connecting as root@node2...
 Connecting as root@node3...
 ```
 ```
-$ run-over-ssh remoteuser "cd git-project && git status" devmachine
+$ runoverssh remoteuser "cd git-project && git status" devmachine
 Please set remoteuser's password for each host:
 
 remoteuser@devmachine password: 
@@ -72,7 +72,7 @@ Your branch is up-to-date with 'origin/master'.
 nothing to commit, working directory clean
 ```
 ```
-$ run-over-ssh -g --script backup.sh --hostsfile hostlist remoteuser
+$ runoverssh -g --script backup.sh --hostsfile hostlist remoteuser
 remoteuser's password (used for all connections):
 
 Connecting as remoteuser@host1...
