@@ -17,20 +17,20 @@ $ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
 
 #### Options:
 ```
-     -s, --script [file]        read commands from a script file instead
-     -r, --hostsfile [file]     use the list of hosts from a file (one host per line)
+  -g, --globalpw             ask one global password for all connections
+  -s, --script [file]        read commands from a script file instead
+  -r, --hostsfile [file]     use the list of hosts from a file (one host per line)
   
-     -g, --globalpw             ask one global password for all connections
-     -n, --nopw                 no password (use ssh directly instead of sshpass)
-     --sshflags [flags]         set custom ssh flags
-                                default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
-     -b, --bashflags [flags]    set custom bash flags
-                                default: '-l'
+  -n, --nopw                 no password (use ssh directly instead of sshpass)
+  -l, --log                  save ssh output (default: ${script_alias}.log) (append)
+  -q, --quiet                disable ssh screen output
   
-     -l, --log                  save ssh output (default: runoverssh.log) (overwrite)
-     --logfile [file]           save ssh output to a custom file (overwrite)
-     -q, --quiet                disable ssh screen output
-  
+  --bashflags [flags]        set custom bash flags
+                              default: '-l'
+  --sshflags [flags]         set custom ssh flags
+                              default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
+  --logfile [file]           save ssh output to a custom file (append)
+
 ```
 
 #### Examples

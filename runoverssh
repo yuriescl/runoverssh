@@ -31,19 +31,19 @@ function print_help {
   echo "Runs a Bash command/script over ssh in one or more hosts."
   echo "Options:"
   echo ""
+  echo "   -g, --globalpw             ask one global password for all connections"
   echo "   -s, --script [file]        read commands from a script file instead"
   echo "   -r, --hostsfile [file]     use the list of hosts from a file (one host per line)"
   echo ""
-  echo "   -g, --globalpw             ask one global password for all connections"
   echo "   -n, --nopw                 no password (use ssh directly instead of sshpass)"
-  echo "   --sshflags [flags]         set custom ssh flags"
-  echo "                              default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'"
-  echo "   -b, --bashflags [flags]    set custom bash flags"
-  echo "                              default: '-l'"
-  echo ""
-  echo "   -l, --log                  save ssh output (default: ${script_alias}.log) (overwrite)"
-  echo "   --logfile [file]           save ssh output to a custom file (overwrite)"
+  echo "   -l, --log                  save ssh output (default: ${script_alias}.log) (append)"
   echo "   -q, --quiet                disable ssh screen output"
+  echo ""
+  echo "   --bashflags [flags]        set custom bash flags"
+  echo "                               default: '-l'"
+  echo "   --sshflags [flags]         set custom ssh flags"
+  echo "                               default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'"
+  echo "   --logfile [file]           save ssh output to a custom file (append)"
   echo ""
   echo "Examples:"
   echo ""
@@ -72,7 +72,7 @@ global_pw=""  # -g, --globalpw
 passwords=()
 no_pw="" 
 ssh_flags="-o ConnectTimeout=5 -o StrictHostKeyChecking=no"   # --sshflags
-bash_flags="-l"  #-b, --bashflags
+bash_flags="-l"  # --bashflags
 quiet_enabled="" # -q | --quiet
 
 if [[ "$1" == "--help" ]]; then
@@ -109,7 +109,7 @@ for parameter do
       "--sshflags")
         ssh_flags="${parameter}"
         ;;
-      "-b" | "--bashflags")
+      "--bashflags")
         bash_flags="${parameter}"
         ;;
     esac
@@ -118,7 +118,7 @@ for parameter do
   else  # first or not waiting option
     is_first="no"
     case "${parameter}" in
-      "-s" | "--script" | "-r" | "--hostsfile" | "--logfile" | "--sshflags" | "-b" | "--bashflags")
+      "-s" | "--script" | "-r" | "--hostsfile" | "--logfile" | "--sshflags" | "--bashflags")
         waiting_option="${parameter}"
         ;;
       "-g" | "--globalpw")
