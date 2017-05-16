@@ -55,7 +55,7 @@ function print_help {
   echo ""
   echo "  runoverssh --script myscript.sh --hostsfile hostlist remoteuser"
   echo ""
-  echo "Bugs or Requests: yuriescl@gmail.com"
+  echo "Bugs or Requests: https://github.com/yuriescl/runoverssh/issues"
 }
 
 # Standard parameters
