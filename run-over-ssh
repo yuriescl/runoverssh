@@ -38,8 +38,8 @@ function print_help {
   echo "   -n, --nopw              no password (use ssh directly instead of sshpass)"
   echo "   --sshflags [flags]      set custom ssh flags"
   echo "                           default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'"
-  echo "   --slogin                make the remote bash act as a login shell"
-  echo "   --sinteractive          make the remote bash act as a interactive shell"
+  echo "   -b, --bashflags         set custom bash flags"
+  echo "                           default: '-l'"
   echo ""
   echo "   -l, --log               save ssh output (default: ${script_alias}.log) (overwrite)"
   echo "   --logfile [file]        save ssh output to a custom file (overwrite)"
@@ -68,12 +68,11 @@ read_commands_from_file=""  # -s | --script
 read_hosts_from_file=""  # -r | --hostsfile
 log_enabled=""  # -l | --log
 log_file="${script_alias}.log"  # --logfile
-global_pw=""
+global_pw=""  # -g, --globalpw
 passwords=()
 no_pw="" 
 ssh_flags="-o ConnectTimeout=5 -o StrictHostKeyChecking=no"   # --sshflags
-s_login=""  # --slogin
-s_interactive=""  # --sinteractive
+bash_flags="-l"  #-b, --bashflags
 quiet_enabled="" # -q | --quiet
 
 if [[ "$1" == "--help" ]]; then
@@ -95,15 +94,6 @@ waiting_option=""
 for parameter do
   if [ -n "${is_first}" ] && [ -n "${waiting_option}" ]; then
 
-    # Check if value will be missing
-    if [[ "${parameter}" == "--"* ]] || [[ "${parameter}" == "-"* ]]; then
-      case "${waiting_option}" in
-        "-s" | "--script" | "-r" | "--hostsfile" | "--logfile" | "--sshflags")
-          echo "Error! Missing value for '${waiting_option}' parameter. Exiting."
-          exit 1
-      esac
-    fi
-
     # Assign the option
     case "${waiting_option}" in
       "-s" | "--script")
@@ -119,13 +109,16 @@ for parameter do
       "--sshflags")
         ssh_flags="${parameter}"
         ;;
+      "-b" | "--bashflags")
+        bash_flags="${parameter}"
+        ;;
     esac
     waiting_option=""
   
   else  # first or not waiting option
     is_first="no"
     case "${parameter}" in
-      "-s" | "--script" | "-r" | "--hostsfile" | "--logfile" | "--sshflags")
+      "-s" | "--script" | "-r" | "--hostsfile" | "--logfile" | "--sshflags" | "-b" | "--bashflags")
         waiting_option="${parameter}"
         ;;
       "-g" | "--globalpw")
@@ -134,12 +127,6 @@ for parameter do
       "-n" | "--nopw")
         no_pw="true"
         ;;
-      "-slogin")
-        s_login="-l"
-		    ;;
-	    "-sinteractive")
-		    s_interactive="-i"
-		    ;;
       "-l" | "--log")
         log_enabled="true"
         ;;
@@ -278,15 +265,15 @@ if [ -n "${no_pw}" ]; then
     echo "Connecting as ${username}@${host}..."
     if [ -n "${read_commands_from_file}" ]; then
       if [ -n "${quiet_enabled}" ]; then
-        ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -s" < "${read_commands_from_file}" >> "${log_file}"
+        ssh ${ssh_flags} ${username}@${host} "bash ${bash_flags} -s" < "${read_commands_from_file}" >> "${log_file}"
       else
-        ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -s" < "${read_commands_from_file}" | tee -a "${log_file}"
+        ssh ${ssh_flags} ${username}@${host} "bash ${bash_flags} -s" < "${read_commands_from_file}" | tee -a "${log_file}"
       fi
     else
       if [ -n "${quiet_enabled}" ]; then
-        ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -c \"${command}\"" >> "${log_file}"
+        ssh ${ssh_flags} ${username}@${host} "bash ${bash_flags} -c \"${command}\"" >> "${log_file}"
       else
-        ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -c \"${command}\"" | tee -a "${log_file}"
+        ssh ${ssh_flags} ${username}@${host} "bash ${bash_flags} -c \"${command}\"" | tee -a "${log_file}"
       fi
     fi
   done
@@ -297,15 +284,15 @@ else
     echo "Connecting as ${username}@${host}..."
     if [ -n "${read_commands_from_file}" ]; then
       if [ -n "${quiet_enabled}" ]; then
-        sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -s" < "${read_commands_from_file}" >> "${log_file}"
+        sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${bash_flags} -s" < "${read_commands_from_file}" >> "${log_file}"
       else
-        sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -s" < "${read_commands_from_file}" | tee -a "${log_file}"
+        sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${bash_flags} -s" < "${read_commands_from_file}" | tee -a "${log_file}"
       fi
     else
       if [ -n "${quiet_enabled}" ]; then
-        sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -c \"${command}\"" >> "${log_file}"
+        sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${bash_flags} -c \"${command}\"" >> "${log_file}"
       else
-        sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${s_login} ${s_interactive} -c \"${command}\"" | tee -a "${log_file}"
+        sshpass -p "${passwords[$i]}" ssh ${ssh_flags} ${username}@${host} "bash ${bash_flags} -c \"${command}\"" | tee -a "${log_file}"
       fi
     fi
 

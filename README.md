@@ -24,8 +24,8 @@ $ run-over-ssh [OPTIONS] USERNAME COMMAND HOSTS...
      -n, --nopw              no password (use ssh directly instead of sshpass)
      --sshflags [flags]      set custom ssh flags
                              default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
-     --slogin                make the remote bash act as a login shell
-     --sinteractive          make the remote bash act as a interactive shell
+     -b, --bashflags         set custom bash flags
+                             default: '-l'
   
      -l, --log               save ssh output (default: run-over-ssh.log) (overwrite)
      --logfile [file]        save ssh output to a custom file (overwrite)
@@ -53,7 +53,7 @@ Connecting as root@host2...
 Connecting as root@host3...
 ```
 ```
-$ run-over-ssh -q -l -g --slogin -r puppet-nodes root "puppet agent -t"
+$ run-over-ssh -q -l -g -r puppet-nodes root "puppet agent -t"
 root's password (used for all connections):
 
 Connecting as root@node1...
