@@ -1,0 +1,5 @@
+2.1:
+
+- now checks for sshpass only when '-n' option is not set
+- improved error messages
+- added default Bash flags in README
