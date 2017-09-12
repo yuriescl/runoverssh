@@ -1,3 +1,7 @@
+2.2:
+
+- added option to pass arguments to the script file (ex: --script "test.sh" --args "arg1 arg2")
+
 2.1:
 
 - now checks for sshpass only when '-n' option is not set
