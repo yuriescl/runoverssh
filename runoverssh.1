@@ -1,0 +1,58 @@
+.TH RUNOVERSSH 1
+.SH NAME
+runoverssh \- Runs a Bash command/script over ssh in one or more hosts
+.SH SYNOPSIS
+.B runoverssh
+[\fBOPTIONS\fR]
+USERNAME
+COMMAND
+HOSTS...
+.SH DESCRIPTION
+.B runoverssh
+This program runs a Bash command/script over ssh in one or more hosts.
+.SH OPTIONS
+.TP
+.BR \-g ", " \-\-globalpw
+ask one global password for all connections
+
+.TP
+.BR \-s ", " \-\-script " " [file]
+read commands from a script file instead
+
+.TP
+.BR \-r ", " \-\-hostsfile " " [file]
+use the list of hosts from a file (one host per line)
+
+.TP
+.BR \-n ", " \-\-nopw " " [file]
+no password (use ssh directly instead of sshpass)
+
+.TP
+.BR \-a ", " \-\-args " " [args]
+specify the arguments to be passed to the script file
+
+.TP
+.BR \-l ", " \-\-log
+save ssh output (default: runoverssh.log) (append)
+
+.TP
+.BR \-q ", " \-\-quiet " " [file]
+disable ssh screen output
+
+.TP
+.BR \-\-bashflags " " [flags]
+set custom bash flags.
+default: '-l'
+
+.TP
+.BR \-\-sshflags " " [flags]
+set custom ssh flags.
+default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
+
+.TP
+.BR \-\-logfile " " [file]
+save ssh output to a custom file (append)
+
+.SH AUTHOR
+runoverssh was written by Yuri Escalianti.
+
