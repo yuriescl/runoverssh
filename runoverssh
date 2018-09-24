@@ -270,10 +270,6 @@ if [ -z "${log_enabled}" ]; then
   log_file="/dev/null"
 fi
 
-if [ -f "${log_file}" ]; then
-  rm "${log_file}"
-fi
-
 # Connect to each host and execute the command/script
 if [ -n "${no_pw}" ]; then
   for host in "${hosts[@]}" 
