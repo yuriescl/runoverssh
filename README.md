@@ -2,7 +2,21 @@
 
 This program runs a Bash command/script over ssh in one or more hosts.
 
-#### Usage:
+### Installation
+
+#### Ubuntu
+```
+sudo apt install runoverssh
+```
+
+#### Manually
+```
+git clone https://github.com/yuriescl/runoverssh
+sudo cp runoverssh/runoverssh /usr/local/bin/runoverssh
+rm -rf runoverssh
+```
+
+### Usage:
 ```
 $ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
 ```
