@@ -16,19 +16,25 @@ sudo cp runoverssh/runoverssh /usr/local/bin/runoverssh
 rm -rf runoverssh
 ```
 
-### Usage:
+### Usage
 ```
 $ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
 ```
 
-#### Default behavior:
+### Default behavior
 
 * Ask each `username@host` password at the start
 * SSH flags `-o ConnectTimeout=5 -o StrictHostKeyChecking=no`
 * Bash flags `-l`
 * Prints all SSH output in the screen
 
-#### Options:
+### SSH Authentication
+
+`sshpass` is used for authenticating using a password.  
+For using SSH directly (no `sshpass`), use the `--nopw`/`-n` flag.
+This is useful for SSH public-key authentication.
+
+### Options:
 ```
   -g, --globalpw             ask one global password for all connections
   -s, --script [file]        read commands from a script file instead
@@ -47,8 +53,9 @@ $ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
 
 ```
 
-#### Examples
+### Examples
 ```
+# Restart Apache webserver in two hosts
 $ runoverssh root "systemctl restart apache2" webserver webserver2
 Please set root's password for each host:
 
@@ -59,7 +66,8 @@ Connecting as root@webserver...
 Connecting as root@webserver2...
 ```
 ```
-$ runoverssh --log --quiet --globalpw root "reboot" host1 host2 host3
+# Reboot three hosts, which contain the same root password. Log the output.
+$ runoverssh --log --globalpw root "reboot" host1 host2 host3
 root's password (used for all connections):
 
 Connecting as root@host1...
@@ -67,6 +75,7 @@ Connecting as root@host2...
 Connecting as root@host3...
 ```
 ```
+# Run puppet agent in all nodes listed in a file supressing output from ssh.
 $ runoverssh -q -l -g -r puppet-nodes root "puppet agent -t"
 root's password (used for all connections):
 
@@ -75,6 +84,7 @@ Connecting as root@node2...
 Connecting as root@node3...
 ```
 ```
+# Check git status on devmachine
 $ runoverssh remoteuser "cd git-project && git status" devmachine
 Please set remoteuser's password for each host:
 
@@ -86,6 +96,7 @@ Your branch is up-to-date with 'origin/master'.
 nothing to commit, working directory clean
 ```
 ```
+# Run backup script in all hosts listed in a file
 $ runoverssh -g --script backup.sh --hostsfile hostlist remoteuser
 remoteuser's password (used for all connections):
 
