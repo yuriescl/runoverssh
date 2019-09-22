@@ -87,7 +87,7 @@ hostsfile=""  # -r , --hostsfile
 logfile="/dev/null"  # --logfile
 globalpw=""  # -g, --globalpw
 shell="bash"
-shellflags="-l"  # --shellflags
+shellflags=""  # --shellflags
 sshflags="-o ConnectTimeout=5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"   # --sshflags
 quiet="" # -q , --quiet
 verbose=""
