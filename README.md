@@ -48,9 +48,9 @@ See the `-g` flag.
    --shell                    Remote shell to be used. Supported values:
                                sh, bash
                               default: bash
-   --shellflags FLAGS         Set custom shell flags
+   --shellflags FLAGS         Remote shell flags
                               default: ''
-   --sshflags FLAGS           Set custom ssh flags
+   --sshflags FLAGS           Local SSH flags
                               default:  -o ConnectTimeout=5
                                         -o StrictHostKeyChecking=no
                                         -o UserKnownHostsFile=/dev/null
