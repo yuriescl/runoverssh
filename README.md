@@ -54,7 +54,7 @@ See the `-g` flag.
                               default:  -o ConnectTimeout=5
                                         -o StrictHostKeyChecking=no
                                         -o UserKnownHostsFile=/dev/null
-   --logfile FILE             Append SSH output to a custom file
+   --logfile FILE             Append SSH output to a file
 ```
 
 ### Examples

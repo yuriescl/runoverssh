@@ -47,7 +47,7 @@ print_help() {
   error "                              default:  -o ConnectTimeout=5"
   error "                                        -o StrictHostKeyChecking=no"
   error "                                        -o UserKnownHostsFile=/dev/null"
-  error "   --logfile FILE             Append SSH output to a custom file"
+  error "   --logfile FILE             Append SSH output to a file"
   error ""
   error "Examples:"
   error ""
