@@ -24,7 +24,7 @@ $ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
 ### Default behavior
 
 * SSH flags: `-o ConnectTimeout=5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null`
-* Prints all SSH output in the screen
+* Uses `bash` as the remote shell
 
 ### Global Password
 
