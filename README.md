@@ -65,7 +65,7 @@ runoverssh root "systemctl restart apache2" webserver webserver2
 
 #### Reboot three hosts, which contain the same root password. Writes the SSH output to `reboot.log`.
 ```
-$ runoverssh --logfile reboot.log --globalpw root "reboot" host1 host2 host3
+runoverssh --logfile reboot.log --globalpw root "reboot" host1 host2 host3
 ```
 
 #### Run puppet agent in all nodes listed in `puppet-nodes`, supressing the output
