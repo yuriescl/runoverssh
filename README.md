@@ -11,7 +11,7 @@ sudo apt install runoverssh
 
 #### Manually
 ```
-sudo curl -L "https://raw.githubusercontent.com/yuriescl/runoverssh/master/runoverssh" -o /usr/local/bin/runoverssh && /usr/local/bin/runoverssh
+sudo curl -L "https://raw.githubusercontent.com/yuriescl/runoverssh/master/runoverssh" -o /usr/local/bin/runoverssh && chmod +x /usr/local/bin/runoverssh
 ```
 
 ### Usage
