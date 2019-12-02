@@ -1,6 +1,6 @@
 .TH RUNOVERSSH 1
 .SH NAME
-runoverssh \- Runs a Bash command/script over ssh in one or more hosts
+runoverssh \- Run a shell command or script over ssh in one or more hosts
 .SH SYNOPSIS
 .B runoverssh
 [\fBOPTIONS\fR]
@@ -9,49 +9,53 @@ COMMAND
 HOSTS...
 .SH DESCRIPTION
 .B runoverssh
-This program runs a Bash command/script over ssh in one or more hosts.
+Run a shell command or script over ssh in one or more hosts
 .SH OPTIONS
 .TP
 .BR \-g ", " \-\-globalpw
-ask one global password for all connections
+Prompt a global password for all connections
 
 .TP
 .BR \-s ", " \-\-script " " [file]
-read commands from a script file instead
+Read commands from a script file, disables the default COMMAND argument
 
 .TP
 .BR \-r ", " \-\-hostsfile " " [file]
-use the list of hosts from a file (one host per line)
-
-.TP
-.BR \-n ", " \-\-nopw " " [file]
-no password (use ssh directly instead of sshpass)
+Read the list of hosts from a file (one host per line), disables the default HOSTS argument
 
 .TP
 .BR \-a ", " \-\-args " " [args]
-specify the arguments to be passed to the script file
+Arguments (in a single string) to be passed to the script file.
 
 .TP
-.BR \-l ", " \-\-log
-save ssh output (default: runoverssh.log) (append)
+.BR \-q ", " \-\-quiet " "
+Disable all screen output, except for password prompts. If logfile is set, output is written there
 
 .TP
-.BR \-q ", " \-\-quiet " " [file]
-disable ssh screen output
+.BR \-v ", " \-\-verbose " "
+Print verbose messages
 
 .TP
-.BR \-\-bashflags " " [flags]
-set custom bash flags.
-default: '-l'
+.BR \-\-shell " " [shell]
+Remote shell to be used.
+Supported values: sh, bash.
+Default: bash
 
 .TP
-.BR \-\-sshflags " " [flags]
-set custom ssh flags.
-default: '-o ConnectTimeout=5 -o StrictHostKeyChecking=no'
+.BR \-\-shellflags " " [shellflags]
+Remote shell flags.
+Default: ''
+
+.TP
+.BR \-\-sshflags " " [shellflags]
+Local SSH flags.
+Default: -o ConnectTimeout=5
+         -o StrictHostKeyChecking=no
+         -o UserKnownHostsFile=/dev/null
 
 .TP
 .BR \-\-logfile " " [file]
-save ssh output to a custom file (append)
+Append SSH output to a file
 
 .SH AUTHOR
 runoverssh was written by Yuri Escalianti.

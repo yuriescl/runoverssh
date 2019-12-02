@@ -1,3 +1,14 @@
+3.0.1:
+
+- Updated documentation
+
+3.0:
+
+- POSIX compliance
+- No longer uses sshpass by default
+- Added --shell option
+- Added --verbose option
+
 2.2:
 
 - added option to pass arguments to the script file (ex: --script "test.sh" --args "arg1 arg2")

@@ -37,13 +37,13 @@ See the `-g` flag.
                                the default COMMAND argument
    -r, --hostsfile FILE       Read the list of hosts from a file (one host
                                per line), disables the default HOSTS argument
-   -a, --args                 Arguments (in a single string) to be passed to
+   -a, --args ARGS            Arguments (in a single string) to be passed to
                                the script file.
    -q, --quiet                Disable all screen output, except for password
                                prompts. If logfile is set, output is written
                                there
    -v, --verbose              Print verbose messages
-   --shell                    Remote shell to be used. Supported values:
+   --shell SHELL              Remote shell to be used. Supported values:
                                sh, bash
                               default: bash
    --shellflags FLAGS         Remote shell flags
