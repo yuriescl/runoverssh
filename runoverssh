@@ -24,7 +24,6 @@ script_alias=`basename -s .sh "$0"`
 # Print help
 print_help() {
   error "Usage: $script_name [OPTIONS] USERNAME COMMAND HOSTS..."
-  error "Runs a shell command/script over ssh in one or more hosts."
   error "Options:"
   error ""
   error "   -g, --globalpw             Prompt a global password for all connections"

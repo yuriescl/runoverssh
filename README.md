@@ -1,6 +1,6 @@
 ## Run Over SSH
 
-Run a shell command or script over ssh in one or more hosts.
+Run shell commands over ssh.
 
 ### Installation
 
@@ -16,7 +16,30 @@ sudo curl -L "https://raw.githubusercontent.com/yuriescl/runoverssh/master/runov
 
 ### Usage
 ```
-$ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
+runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
+
+Options:
+  -g, --globalpw             Prompt a global password for all connections
+  -s, --script FILE          Read commands from a script file, disables
+                              the default COMMAND argument
+  -r, --hostsfile FILE       Read the list of hosts from a file (one host
+                              per line), disables the default HOSTS argument
+  -a, --args ARGS            Arguments (in a single string) to be passed to
+                              the script file.
+  -q, --quiet                Disable all screen output, except for password
+                              prompts. If logfile is set, output is written
+                              there
+  -v, --verbose              Print verbose messages
+  --shell SHELL              Remote shell to be used. Supported values:
+                              sh, bash
+                             default: bash
+  --shellflags FLAGS         Remote shell flags
+                             default: ''
+  --sshflags FLAGS           Local SSH flags
+                             default:  -o ConnectTimeout=5
+                                       -o StrictHostKeyChecking=no
+                                       -o UserKnownHostsFile=/dev/null
+  --logfile FILE             Append SSH output to a file
 ```
 
 ### Default behavior
@@ -29,31 +52,6 @@ $ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
 A global password can be used for all SSH connections.
 It requires `sshpass` to be installed.  
 See the `-g` flag.
-
-### Options:
-```
-   -g, --globalpw             Prompt a global password for all connections
-   -s, --script FILE          Read commands from a script file, disables
-                               the default COMMAND argument
-   -r, --hostsfile FILE       Read the list of hosts from a file (one host
-                               per line), disables the default HOSTS argument
-   -a, --args ARGS            Arguments (in a single string) to be passed to
-                               the script file.
-   -q, --quiet                Disable all screen output, except for password
-                               prompts. If logfile is set, output is written
-                               there
-   -v, --verbose              Print verbose messages
-   --shell SHELL              Remote shell to be used. Supported values:
-                               sh, bash
-                              default: bash
-   --shellflags FLAGS         Remote shell flags
-                              default: ''
-   --sshflags FLAGS           Local SSH flags
-                              default:  -o ConnectTimeout=5
-                                        -o StrictHostKeyChecking=no
-                                        -o UserKnownHostsFile=/dev/null
-   --logfile FILE             Append SSH output to a file
-```
 
 ### Examples
 Restart Apache webserver in two hosts
