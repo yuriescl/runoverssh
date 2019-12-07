@@ -1,6 +1,6 @@
-## Run Over SSH
+## Description
 
-Run shell commands over ssh.
+POSIX-compliant shell script for easily running shell commands and scripts over SSH.
 
 ### Installation
 
@@ -16,7 +16,7 @@ sudo curl -L "https://raw.githubusercontent.com/yuriescl/runoverssh/master/runov
 
 ### Usage
 ```
-runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
+$ runoverssh [OPTIONS] USERNAME COMMAND HOSTS...
 
 Options:
   -g, --globalpw             Prompt a global password for all connections
